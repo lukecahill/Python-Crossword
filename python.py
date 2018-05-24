@@ -34,7 +34,6 @@ def check_position(check_word):
         if check_word.direction is "d":
             for j in range(0, length):
                 # check if the item is empty and if not then if it's already the same
-                print("i: {} j: {} ".format(i, j))
                 if (board[j][check_word.start_pos[1]] != "[ ]") and (board[j][check_word.start_pos[1]] != i):
                    return False
         else:
