@@ -10,11 +10,6 @@ def print_board():
         for j in range(0, board_width):
             print(board[i][j], end='')
 
-def fill_board():
-    for i in range(0, board_height):
-        for j in range(0, board_width):
-            board[i][j] = "[X]"
-
 def add_word(new_word):
     if check_boundary(new_word) == False:
         print("That word is out of bounds!")
