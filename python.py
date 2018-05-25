@@ -30,16 +30,16 @@ def add_word(new_word):
 def check_position(check_word):
     is_valid = True
     length = len(check_word.letters)
-    for i in check_word.letters:
+    starting_position = check_word.start_pos
+    for i in range(length):
         if check_word.direction is "d":
-            for j in range(0, length):
-                # check if the item is empty and if not then if it's already the same
-                if (board[j][check_word.start_pos[1]] != "[ ]") and (board[j][check_word.start_pos[1]] != i):
-                   return False
+            y_board_pos = board[i + starting_position[0]][starting_position[1]]
+            if y_board_pos != "[ ]" and y_board_pos != " {} ".format(check_word.letters[i]):
+                return False
         else:
-            for j in range(0, length):
-                if board[check_word.start_pos[0]][j] != i and board[check_word.start_pos[0]][j] != "[ ]":
-                    return False
+            x_board_pos = board[starting_position[0]][i + starting_position[1]]
+            if x_board_pos != "[ ]" and x_board_pos != " {} ".format(check_word.letters[i]):
+                return False
     return is_valid
 
 def check_boundary(check_word):
@@ -60,10 +60,13 @@ def main():
     add_word(Word("lol", "d", [0, 0]))
     print_board()
     print("")
-    add_word(Word("nlp", "d", [0, 0]))  # this will not be added
+    add_word(Word("lol", "d", [0, 0]))  # this will not be added
     print_board()
     print("")
     add_word(Word("luke", "a", [4, 1]))
+    print_board()
+    print("")
+    add_word(Word("let", "a", [0, 0]))
     print_board()
     print("")
     add_word(Word("areallylongone", "a", [1, 1]))   # this will also not be added
