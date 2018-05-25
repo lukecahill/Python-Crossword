@@ -1,4 +1,5 @@
 from word import Word
+import re
 
 board_height = 5
 board_width = 5
@@ -13,7 +14,7 @@ def print_board(line_break = False):
     if line_break:
         print("")
 
-def add_word(new_word):
+def add_word_to_board(new_word):
     if check_boundary(new_word) == False:
         print("The word '{}' is out of bounds!".format(new_word.letters))
         return
@@ -25,10 +26,10 @@ def add_word(new_word):
     length = len(new_word.letters)
     if new_word.direction is "d":
         for i in range(0, length):
-            board[new_word.start_pos[0] + i][new_word.start_pos[1]] = " {} ".format(new_word.letters[i])
+            board[new_word.start_pos[0] + i][new_word.start_pos[1]] = " {} ".format(new_word.letters[i].lower)
     else:
         for i in range(0, length):
-            board[new_word.start_pos[0]][new_word.start_pos[1] + i] = " {} ".format(new_word.letters[i])
+            board[new_word.start_pos[0]][new_word.start_pos[1] + i] = " {} ".format(new_word.letters[i].lower)
 
 def check_position(check_word):
     is_valid = True
@@ -59,16 +60,26 @@ def check_boundary(check_word):
             return False
     return True
 
+def user_input_word():
+    while True:
+        word_to_add = input("Enter a word to add: ")
+        if not re.match("^[a-zA-Z]*$", word_to_add):
+            print("Please only enter alphabetical letters")
+        else:
+            break
+
 def main():
-    add_word(Word("lol", "d", [0, 0]))
+    add_word_to_board(Word("lol", "d", [0, 0]))
     print_board(True)
-    add_word(Word("let", "d", [0, 0]))  # this will not be added
+    add_word_to_board(Word("let", "d", [0, 0]))  # this will not be added
     print_board(True)
-    add_word(Word("luke", "a", [4, 1]))
+    add_word_to_board(Word("luke", "a", [4, 1]))
     print_board(True)
-    add_word(Word("let", "a", [0, 0]))
+    add_word_to_board(Word("let", "a", [0, 0]))
     print_board(True)
-    add_word(Word("areallylongone", "a", [1, 1]))   # this will also not be added
+    add_word_to_board(Word("areallylongone", "a", [1, 1]))   # this will also not be added
+    print_board(True)
+    user_input_word()
     print_board(True)
 
 if __name__ == "__main__":
