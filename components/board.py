@@ -1,4 +1,4 @@
-from word import Word
+from components.word import Word
 
 class Board:
     height = 5

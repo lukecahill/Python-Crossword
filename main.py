@@ -1,5 +1,5 @@
-from word import Word
-from board import Board
+from components.word import Word
+from components.board import Board
 import re
 
 def user_input_word():
