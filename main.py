@@ -15,7 +15,7 @@ def user_input_word():
 def user_input_direction():
     while True:
         direction = input("Enter a direction ('d' or 'a'): ")
-        if not re.match("^[ad]*$", direction):
+        if not re.match("^[adAD]{1}$", direction):
             print("Only 'a' or 'd' are valid choices")
         else:
             break
@@ -45,7 +45,7 @@ def user_input_coors(board):
 def main():
     crossword = Board(5, 5)
     crossword.read_clues("questions.csv")
-    crossword.print_board(True);
+    crossword.print_board(True)
 
 if __name__ == "__main__":
     main()
