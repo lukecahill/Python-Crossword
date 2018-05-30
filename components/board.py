@@ -76,3 +76,7 @@ class Board:
                 clue = Clues(row[0], row[1], row[2], [int(row[3][0]), int(row[3][-1])])
                 self.clues.append(clue)
                 self.add_word_to_board(clue)
+
+    def print_clues(self):
+        for clue in self.clues:
+            print("Down {}, Across {}. {}".format(clue.start_pos[0], clue.start_pos[1], clue.clue))
