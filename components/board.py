@@ -18,7 +18,13 @@ class Board:
         for i in range(0, self.height):
             print("")
             for j in range(0, self.width):
-                print(self.board[i][j], end='')
+                if self.board[i][j] != "[ ]":
+                    if hidden:
+                        print(" X ", end='')
+                    else:
+                        print(self.board[i][j], end='')
+                else:
+                    print("[ ]", end='')
 
         if line_break:
             print("")
