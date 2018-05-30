@@ -7,7 +7,6 @@ class Board:
     height = 5
     width = 5
     board = []
-    words = []
     clues = []
 
     def __init__(self, height, width):
@@ -40,8 +39,6 @@ class Board:
         else:
             for i in range(0, length):
                 self.board[new_word.start_pos[0]][new_word.start_pos[1] + i] = " {} ".format(new_word.letters[i].lower())
-
-        self.words.append(new_word)
 
     def check_position(self, check_word):
         is_valid = True
