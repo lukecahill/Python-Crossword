@@ -1,4 +1,3 @@
-from components.word import Word
 from components.clues import Clues
 
 import csv
@@ -92,3 +91,9 @@ class Board:
     def print_clues(self):
         for clue in self.clues:
             print("Down {}, Across {}. {}".format(clue.start_pos[0], clue.start_pos[1], clue.clue))
+
+    def update_board(self):
+        # currently when a word is guessed then the board itself is not updated.
+        # here the board array should be re-made with the shown/hidden words
+        # significant rework?
+        pass

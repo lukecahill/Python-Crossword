@@ -1,4 +1,3 @@
-from components.word import Word
 from components.board import Board
 
 def main():
