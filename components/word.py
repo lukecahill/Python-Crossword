@@ -2,6 +2,7 @@ class Word:
     letters = ""
     direction = ""
     start_pos = []  # first is across, second item is down
+    hidden = True
 
     def __init__(self, letters, direction, start_pos):
         self.letters = letters
