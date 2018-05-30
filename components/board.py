@@ -15,16 +15,22 @@ class Board:
         self.board = [["[ ]"] * width for i in range(height)]
 
     def print_board(self, line_break = False, hidden = False):
+        print(" ± ", end="")
+
+        for i in range(self.width):
+            print(" {} ".format(i), end="")
+
         for i in range(0, self.height):
             print("")
+            print(" {} ".format(i), end="")
             for j in range(0, self.width):
                 if self.board[i][j] != "[ ]":
                     if hidden:
-                        print(" X ", end='')
+                        print(" X ", end="")
                     else:
-                        print(self.board[i][j], end='')
+                        print(self.board[i][j], end="")
                 else:
-                    print("[ ]", end='')
+                    print("[ ]", end="")
 
         if line_break:
             print("")
