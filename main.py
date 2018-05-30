@@ -1,5 +1,6 @@
 from components.word import Word
 from components.board import Board
+
 import re
 
 def user_input_word():
@@ -53,11 +54,13 @@ def main():
     # crossword.print_board(True)
     # crossword.add_word_to_board(Word("areallylongone", "a", [1, 1]))   # this will also not be added
     # crossword.print_board(True)
-    word = user_input_word()
-    coordinates = user_input_coors(crossword)
-    direction = user_input_direction()
-    crossword.add_word_to_board(Word(word, direction, coordinates))
-    crossword.print_board(True)
+    #word = user_input_word()
+    #coordinates = user_input_coors(crossword)
+    #direction = user_input_direction()
+    #crossword.add_word_to_board(Word(word, direction, coordinates))
+    #crossword.print_board(True)
+    crossword.read_clues("questions.csv")
+    crossword.print_board(True);
 
 if __name__ == "__main__":
     main()

@@ -1,16 +1,21 @@
 from components.word import Word
+from components.clues import Clues
+
+import csv
 
 class Board:
     height = 5
     width = 5
     board = []
+    words = []
+    clues = []
 
     def __init__(self, height, width):
         self.height = height
         self.width = width
         self.board = [["[ ]"] * width for i in range(height)]
 
-    def print_board(self, line_break = False):
+    def print_board(self, line_break = False, hidden = False):
         for i in range(0, self.height):
             print("")
             for j in range(0, self.width):
@@ -35,6 +40,8 @@ class Board:
         else:
             for i in range(0, length):
                 self.board[new_word.start_pos[0]][new_word.start_pos[1] + i] = " {} ".format(new_word.letters[i].lower())
+
+        self.words.append(new_word)
 
     def check_position(self, check_word):
         is_valid = True
@@ -64,3 +71,11 @@ class Board:
             if (x_coords + word_length) > self.width:
                 return False
         return True
+
+    def read_clues(self, file_name):
+        with open(file_name, 'r') as file:
+            reader = csv.reader(file)
+            for row in reader:
+                clue = Clues(row[0], row[1], row[2], [int(row[3][0]), int(row[3][-1])])
+                self.clues.append(clue)
+                self.add_word_to_board(clue)
