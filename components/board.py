@@ -7,6 +7,7 @@ class Board:
     width = 5
     board = []
     clues = []
+    remaining = 0
 
     def __init__(self, height, width):
         self.height = height
@@ -94,13 +95,30 @@ class Board:
                 clue = Clues(row[0], row[1], row[2], [int(row[3][0]), int(row[3][-1])])
                 self.clues.append(clue)
                 self.add_word_to_board(clue)
+                self.remaining = self.remaining + 1
 
     def print_clues(self):
         for clue in self.clues:
             print("Down {}, Across {}. {}".format(clue.start_pos[0], clue.start_pos[1], clue.clue))
 
     def guess_word(self, guessed_word):
+        correct = False
         for item in self.clues:
             if item.letters == guessed_word:
                 item.hidden = False
                 self.add_word_to_board(item)
+                print("{} was a correct guess.".format(guessed_word))
+                correct = True
+                self.remaining = self.remaining - 1
+                return self.is_game_won()
+    
+        if not correct:
+            print("{} was a wrong guess.".format(guessed_word))
+        
+        return False
+
+    def is_game_won(self):
+        if self.remaining == 0:
+            return True
+        else:
+            return False

@@ -2,7 +2,7 @@ from components.board import Board
 from components.user_input import UserInput
 
 def main():
-    crossword = Board(10, 10)
+    crossword = Board(5, 5)
     user_input = UserInput()
     crossword.read_clues("questions.csv")
     crossword.print_board(True)
@@ -12,8 +12,12 @@ def main():
         guessed = user_input.user_guess_word()
         if guessed == ":q":
             break
-        crossword.guess_word(guessed)
+        has_user_won = crossword.guess_word(guessed)
         crossword.print_board(True)
+        
+        if has_user_won:
+            print("Congratulations you have won!")
+            break
 
 if __name__ == "__main__":
     main()
