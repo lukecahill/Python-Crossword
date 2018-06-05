@@ -3,10 +3,12 @@ class Clues:
     direction = ""
     start_pos = []  # first is across, second item is down
     clue = ""
-    hidden = False
+    hidden = True
 
     def __init__(self, letters, clue, direction, start_pos):
         self.letters = letters
         self.direction = direction
         self.start_pos = start_pos
         self.clue = clue
+        self.hidden = True
+
