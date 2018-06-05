@@ -17,7 +17,7 @@ class UserInput:
                 print("Only 'a' or 'd' are valid choices")
             else:
                 break
-        return direction
+        return direction.lower()
 
     def user_input_coors(self, board):
         coordinates = []
@@ -38,3 +38,14 @@ class UserInput:
                 coordinates.append(int(coord_to_add))
                 break
         return coordinates
+
+    def user_guess_word(self):
+        user_input = ""
+        while True:
+            user_input = input("Enter a guess: ")
+            if re.match(" ", user_input):
+                print("No whitespace allowed")
+            else:
+                break
+        
+        return user_input
