@@ -40,12 +40,4 @@ class UserInput:
         return coordinates
 
     def user_guess_word(self):
-        user_input = ""
-        while True:
-            user_input = input("Enter a guess: ")
-            if re.match(" ", user_input):
-                print("No whitespace allowed")
-            else:
-                break
-        
-        return user_input
+        return input("Enter a guess: ")
