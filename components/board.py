@@ -47,10 +47,6 @@ class Board:
             print("")
             
     def add_word_to_board(self, new_word):
-        # because the words are now stored in the board list as X
-        # this function fails on first run as to it, everything
-        # is X - which to it, is not just a mask
-        # this checking needs to be re-written to account for this new development.
         if self.check_boundary(new_word) == False:
             print("The word '{}' is out of bounds!".format(new_word.letters))
             return
