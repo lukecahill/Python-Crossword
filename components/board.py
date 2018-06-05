@@ -14,7 +14,7 @@ class Board:
         self.width = width
         self.board = [["[ ]"] * width for i in range(height)]
 
-    def print_board(self, line_break = False, hidden = False):
+    def print_board(self, line_break = False):
         print(" ± ", end="")
 
         for i in range(self.width):
@@ -25,10 +25,7 @@ class Board:
             print(" {} ".format(i), end="")
             for j in range(0, self.width):
                 if self.board[i][j] != "[ ]":
-                    if hidden:
-                        print(" X ", end="")
-                    else:
-                        print(self.board[i][j], end="")
+                    print(self.board[i][j], end="")
                 else:
                     print("[ ]", end="")
 
@@ -36,6 +33,10 @@ class Board:
             print("")
             
     def add_word_to_board(self, new_word):
+        # because the words are now stored in the board list as X
+        # this function fails on first run as to it, everything
+        # is X - which to it, is not just a mask
+        # this checking needs to be re-written to account for this new development.
         if self.check_boundary(new_word) == False:
             print("The word '{}' is out of bounds!".format(new_word.letters))
             return
