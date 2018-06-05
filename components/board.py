@@ -39,17 +39,24 @@ class Board:
             print("The word '{}' is out of bounds!".format(new_word.letters))
             return
 
-        if self.check_position(new_word) == False:
-            print("Could not add word: '{}'".format(new_word.letters))
-            return
+        if new_word.hidden == True:
+            if self.check_position(new_word) == False:
+                print("Could not add word: '{}'".format(new_word.letters))
+                return
         
         length = len(new_word.letters)
         if new_word.direction is "d":
             for i in range(0, length):
-                self.board[new_word.start_pos[0] + i][new_word.start_pos[1]] = " {} ".format(new_word.letters[i].lower())
+                if new_word.hidden:
+                    self.board[new_word.start_pos[0] + i][new_word.start_pos[1]] = " {} ".format("X")
+                else:
+                    self.board[new_word.start_pos[0] + i][new_word.start_pos[1]] = " {} ".format(new_word.letters[i].lower())
         else:
             for i in range(0, length):
-                self.board[new_word.start_pos[0]][new_word.start_pos[1] + i] = " {} ".format(new_word.letters[i].lower())
+                if new_word.hidden:
+                    self.board[new_word.start_pos[0]][new_word.start_pos[1] + i] = " {} ".format("X")
+                else:
+                    self.board[new_word.start_pos[0]][new_word.start_pos[1] + i] = " {} ".format(new_word.letters[i].lower())
 
     def check_position(self, check_word):
         is_valid = True
@@ -92,8 +99,8 @@ class Board:
         for clue in self.clues:
             print("Down {}, Across {}. {}".format(clue.start_pos[0], clue.start_pos[1], clue.clue))
 
-    def update_board(self):
-        # currently when a word is guessed then the board itself is not updated.
-        # here the board array should be re-made with the shown/hidden words
-        # significant rework?
-        pass
+    def guess_word(self, guessed_word):
+        for item in self.clues:
+            if item.letters == guessed_word:
+                item.hidden = False
+                self.add_word_to_board(item)
