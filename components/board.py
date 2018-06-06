@@ -15,33 +15,31 @@ class Board:
         self.board = [["[ ]"] * width for i in range(height)]
 
     def print_board(self, line_break = False):
-        print(" ± ", end="")
+        print(" ± ", end = "")
         for i in range(self.width):
-            print(" {} ".format(i), end="")
+            print(" {} ".format(i), end = "")
         board = [["[ ]"] * self.width for i in range(self.height)]
 
         for clue in self.clues:
             word_length = len(clue.letters)
             for letter in range(0, word_length):
-                if clue.direction == "d":
-                    if not clue.hidden:
-                        board[clue.start_pos[0] + letter][clue.start_pos[1]] = " {} ".format(clue.letters[letter])
-                    else:
-                        board[clue.start_pos[0] + letter][clue.start_pos[1]] = " X "
-                else:
-                    if not clue.hidden:
-                        board[clue.start_pos[0]][clue.start_pos[1] + letter] = " {} ".format(clue.letters[letter])
-                    else:
-                        board[clue.start_pos[0]][clue.start_pos[1] + letter] = " X "
+                if clue.direction == "d" and not clue.hidden:
+                    board[clue.start_pos[0] + letter][clue.start_pos[1]] = " {} ".format(clue.letters[letter])
+                elif clue.direction == "d" and clue.hidden:
+                    board[clue.start_pos[0] + letter][clue.start_pos[1]] = " X "
+                elif clue.direction == "a" and not clue.hidden:
+                    board[clue.start_pos[0]][clue.start_pos[1] + letter] = " {} ".format(clue.letters[letter])
+                elif clue.direction == "a" and clue.hidden:
+                    board[clue.start_pos[0]][clue.start_pos[1] + letter] = " X "
         
         for i in range(0, self.height):
             print("")
-            print(" {} ".format(i), end="")
+            print(" {} ".format(i), end = "")
             for j in range(0, self.width):
                 if board[i][j] != "[ ]":
-                    print(board[i][j], end="")
+                    print(board[i][j], end = "")
                 else:
-                    print("[ ]", end="")
+                    print("[ ]", end = "")
 
         if line_break:
             print("")
