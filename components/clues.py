@@ -11,4 +11,3 @@ class Clues:
         self.start_pos = start_pos
         self.clue = clue
         self.hidden = True
-

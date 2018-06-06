@@ -14,6 +14,7 @@ def main():
             break
         has_user_won = crossword.guess_word(guessed)
         crossword.print_board(True)
+        crossword.print_clues()
         
         if has_user_won:
             print("Congratulations you have won!")
