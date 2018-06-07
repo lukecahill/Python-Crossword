@@ -40,4 +40,13 @@ class UserInput:
         return coordinates
 
     def user_guess_word(self):
-        return input("Enter a guess: ")
+        guess_number = ""
+        while True:
+            guess_number = input("Enter a number clue to guess:")
+            if not re.match("[0-9]", guess_number):
+                print("Invalid clue.")
+            else:
+                break
+        user_guess = input("Enter a guess: ")
+
+        return [user_guess, int(guess_number)]
