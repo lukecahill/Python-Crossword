@@ -9,4 +9,4 @@ questions.csv format:
 
 Currently only board sizes up to 10 width/height are supported. 
 
-User guesses a general answer, rather than specifing the coordinates.
+User guesses a clue number, rather than specifing the coordinates.
