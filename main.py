@@ -10,9 +10,12 @@ def main():
     
     while True:
         guessed = user_input.user_guess_word()
-        if guessed == ":q":
+        user_guess = guessed[0]
+        guess_number = guessed[1]
+
+        if user_guess == ":q":
             break
-        has_user_won = crossword.guess_word(guessed)
+        has_user_won = crossword.guess_word(user_guess, guess_number)
         crossword.print_board(True)
         crossword.print_clues()
         

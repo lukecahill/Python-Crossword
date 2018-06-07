@@ -107,19 +107,20 @@ class Board:
                 self.remaining = self.remaining + 1
 
     def print_clues(self):
-        for clue in self.clues:
-            print("Down {}, Across {}. {}".format(clue.start_pos[0], clue.start_pos[1], clue.clue))
+        clues_length = len(self.clues)
+        for clue in range(0, clues_length):
+            print("Clue number {}: Down {}, Across {}. {}".format(clue, self.clues[clue].start_pos[0], self.clues[clue].start_pos[1], self.clues[clue].clue))
 
-    def guess_word(self, guessed_word):
+    def guess_word(self, guessed_word, guess_number):
         correct = False
-        for item in self.clues:
-            if item.letters == guessed_word:
-                item.hidden = False
-                self.add_word_to_board(item)
-                print("{} was a correct guess.".format(guessed_word))
-                correct = True
-                self.remaining = self.remaining - 1
-                return self.is_game_won()
+        item = self.clues[guess_number]
+        if item.letters == guessed_word:
+            item.hidden = False
+            self.add_word_to_board(item)
+            print("{} was a correct guess.".format(guessed_word))
+            correct = True
+            self.remaining = self.remaining - 1
+            return self.is_game_won()
     
         if not correct:
             print("{} was a wrong guess.".format(guessed_word))
