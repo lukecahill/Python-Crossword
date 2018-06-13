@@ -101,7 +101,8 @@ class Board:
         with open(file_name, 'r') as file:
             reader = csv.reader(file)
             for row in reader:
-                clue = Clues(row[0], row[1], row[2], [int(row[3][0]), int(row[3][-1])])
+                coordinates = row[3].split(':')
+                clue = Clues(row[0], row[1], row[2], [int(coordinates[0]), int(coordinates[1])])
                 self.clues.append(clue)
                 self.add_word_to_board(clue)
                 self.remaining = self.remaining + 1
